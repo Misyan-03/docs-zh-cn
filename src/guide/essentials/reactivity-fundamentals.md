@@ -10,7 +10,7 @@ outline: deep
 
 <div class="options-api">
 
-## 声明响应式状态 \* {#declaring-reactive-state}
+## 声明响应式状态   {#declaring-reactive-state}
 
 选用选项式 API 时，会用 `data` 选项来声明组件的响应式状态。此选项的值应为返回一个对象的函数。Vue 将在创建新组件实例的时候调用此函数，并将函数返回的对象用响应式系统进行包装。此对象的所有顶层属性都会被代理到组件实例 (即方法和生命周期钩子中的 `this`) 上。
 
@@ -41,7 +41,7 @@ export default {
 
 Vue 在组件实例上暴露的内置 API 使用 `$` 作为前缀。它同时也为内部属性保留 `_` 前缀。因此，你应该避免在顶层 `data` 上使用任何以这些字符作前缀的属性。
 
-### 响应式代理 vs. 原始值 \* {#reactive-proxy-vs-original}
+### 响应式代理 vs. 原始值  {#reactive-proxy-vs-original}
 
 在 Vue 3 中，数据是基于 [JavaScript Proxy (代理)](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 实现响应式的。使用过 Vue 2 的用户可能需要注意下面这样的边界情况：
 
@@ -67,9 +67,9 @@ export default {
 
 <div class="composition-api">
 
-## 声明响应式状态 \*\* {#declaring-reactive-state-1}
+## 声明响应式状态    {#declaring-reactive-state-1}
 
-### `ref()` \*\* {#ref}
+### `ref()`    {#ref}
 
 在组合式 API 中，推荐使用 [`ref()`](/api/reactivity-core#ref) 函数来声明响应式状态：
 
@@ -158,7 +158,7 @@ export default {
 
 这里是 [Codepen](https://codepen.io/vuejs-examples/pen/WNYbaqo) 上的例子，没有使用任何构建工具。
 
-### `<script setup>` \*\* {#script-setup}
+### `<script setup>`    {#script-setup}
 
 在 `setup()` 函数中手动暴露大量的状态和方法非常繁琐。幸运的是，我们可以通过使用[单文件组件 (SFC)](/guide/scaling-up/sfc) 来避免这种情况。我们可以使用 `<script setup>` 来大幅度地简化代码：
 
@@ -190,7 +190,7 @@ function increment() {
 如果你没有使用单文件组件，你仍然可以在 [`setup()`](/api/composition-api-setup) 选项中使用组合式 API。
 :::
 
-### 为什么要使用 ref？ \*\* {#why-refs}
+### 为什么要使用 ref？    {#why-refs}
 
 你可能会好奇：为什么我们需要使用带有 `.value` 的 ref，而不是普通的变量？为了解释这一点，我们需要简单地讨论一下 Vue 的响应式系统是如何工作的。
 
@@ -222,7 +222,7 @@ const myRef = {
 
 <div class="options-api">
 
-## 声明方法 \* {#declaring-methods}
+## 声明方法   {#declaring-methods}
 
 <VueSchoolLink href="https://vueschool.io/lessons/methods-in-vue-3" title="免费的 Vue.js Methods 课程"/>
 
@@ -370,7 +370,7 @@ export default {
 
 <div class="composition-api">
 
-## `reactive()` \*\* {#reactive}
+## `reactive()`    {#reactive}
 
 还有另一种声明响应式状态的方式，即使用 `reactive()` API。与将内部值包装在特殊对象中的 ref 不同，`reactive()` 将使对象本身具有响应性：
 
@@ -394,7 +394,7 @@ const state = reactive({ count: 0 })
 
 `reactive()` 将深层地转换对象：当访问嵌套对象时，它们也会被 `reactive()` 包装。当 ref 的值是一个对象时，`ref()` 也会在内部调用它。与浅层 ref 类似，这里也有一个 [`shallowReactive()`](/api/reactivity-advanced#shallowreactive) API 可以选择退出深层响应性。
 
-### Reactive Proxy vs. Original \*\* {#reactive-proxy-vs-original-1}
+### Reactive Proxy vs. Original    {#reactive-proxy-vs-original-1}
 
 值得注意的是，`reactive()` 返回的是一个原始对象的 [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)，它和原始对象是不相等的：
 
@@ -429,7 +429,7 @@ proxy.nested = raw
 console.log(proxy.nested === raw) // false
 ```
 
-### `reactive()` 的局限性 \*\* {#limitations-of-reactive}
+### `reactive()` 的局限性    {#limitations-of-reactive}
 
 `reactive()` API 有一些局限性：
 
@@ -463,9 +463,9 @@ console.log(proxy.nested === raw) // false
 
 由于这些限制，我们建议使用 `ref()` 作为声明响应式状态的主要 API。
 
-## 额外的 ref 解包细节 \*\* {#additional-ref-unwrapping-details}
+## 额外的 ref 解包细节    {#additional-ref-unwrapping-details}
 
-### 作为 reactive 对象的属性 \*\* {#ref-unwrapping-as-reactive-object-property}
+### 作为 reactive 对象的属性    {#ref-unwrapping-as-reactive-object-property}
 
 一个 ref 会在作为响应式对象的属性被访问或修改时自动解包。换句话说，它的行为就像一个普通的属性：
 
@@ -494,7 +494,7 @@ console.log(count.value) // 1
 
 只有当嵌套在一个深层响应式对象内时，才会发生 ref 解包。当其作为[浅层响应式对象](/api/reactivity-advanced#shallowreactive)的属性被访问时不会解包。
 
-### 数组和集合的注意事项 \*\* {#caveat-in-arrays-and-collections}
+### 数组和集合的注意事项    {#caveat-in-arrays-and-collections}
 
 与 reactive 对象不同的是，当 ref 作为响应式数组或原生集合类型 (如 `Map`) 中的元素被访问时，它**不会**被解包：
 
@@ -508,7 +508,7 @@ const map = reactive(new Map([['count', ref(0)]]))
 console.log(map.get('count').value)
 ```
 
-### 在模板中解包的注意事项 \*\* {#caveat-when-unwrapping-in-templates}
+### 在模板中解包的注意事项    {#caveat-when-unwrapping-in-templates}
 
 在模板渲染上下文中，只有顶级的 ref 属性才会被解包。
 
@@ -555,7 +555,7 @@ const { id } = object
 
 <div class="options-api">
 
-### 有状态方法 \* {#stateful-methods}
+### 有状态方法   {#stateful-methods}
 
 在某些情况下，我们可能需要动态地创建一个方法函数，比如创建一个预置防抖的事件处理器：
 
